@@ -266,7 +266,7 @@ async function init() {
   await fetchPrices();
   const validTokens = tokens.filter(t => iconMap[t.toLowerCase()]);
   setupTokenSelect('fromTokenInput', 'fromTokenDropdown', 'fromToken', validTokens, iconMap, () => {
-    document.getElementById('fromAmount').value = 0;
+    document.getElementById('fromAmount').value = '';
     updateAmountPlaceholder();
     updateRate();
     calculate();
