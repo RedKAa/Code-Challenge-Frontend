@@ -1,0 +1,342 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  overflow: hidden;
+  background: linear-gradient(52deg, #31267c, #10101a, #270c8b);
+}
+
+.wrapper{
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  max-width: 550px;
+}
+
+.wrapper::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 81%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgb(206 232 63 / 40%), transparent 70%);
+  filter: blur(60px);
+  z-index: -1;
+}
+
+.swap-container{
+  width: 500px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 32px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2),
+              0 8px 24px rgba(0,0,0,0.3),
+              0 12px 48px rgba(93, 44, 144, 0.2);
+}
+
+@media (max-width: 480px) {
+  .wrapper::before {
+    width: 200px;
+    height: 200px;
+    filter: blur(40px);
+  }
+  .swap-container {
+    padding: 20px;
+  }
+}
+
+.input-row{
+  display: flex;
+  position: relative;
+}
+
+/* Input styles */
+.token-select input,
+.amount-input {
+  width: 325px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0px 5px 5px 0px;
+  padding: 10px 14px;
+  color: white;
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border 0.3s ease;
+}
+
+#fromTokenInput,
+#toTokenInput{
+  width: 150px;
+  border-radius: 5px 0px 0px 5px;
+  border-right: none;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.amount-input{
+  border-left: none;
+  text-align: right;
+}
+
+.token-select input::placeholder,
+.amount-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.token-select input:focus,
+.amount-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.token-select::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 165px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: absolute;
+  width: 178px;
+  background: rgb(75 75 86);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+}
+
+.dropdown.show {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Token icon SVG */
+.dropdown-item .icon svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.token-input-group{
+  margin-bottom: 20px;
+}
+
+/* Label */
+.token-input-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Button */
+button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#rateContainer {
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #ccc;
+  gap: 8px;
+}
+
+#rateContainer.show{
+  opacity: 1;
+}
+#spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ccc;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  opacity: 0;
+}
+#spinner.show{
+  opacity: 0.6;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(14px);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  z-index: 100;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  width: 300px;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: -42px;
+  right: -10px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 42px;
+}
+
+.countdown {
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#fromAmount{
+  padding-right: 50px;
+}
+
+.max-btn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.max-btn:hover {
+  text-decoration: underline;
+}
+
+.token-icon {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.swap-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swap-btn {
+  margin: 0px;
+  padding: 0px;
+  font-size: 18px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.swap-btn:hover {
+  transform: rotate(180deg);
+}

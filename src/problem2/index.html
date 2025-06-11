@@ -1,0 +1,74 @@
+<!--
+
+Problem 2: Fancy Form
+Link: https://s5tech.notion.site/Problem-2-Fancy-Form-033865bc7c98401296f1caa748be1b04
+
+-->
+   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Currency Swap</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="swap-container">
+      <h1>Swap Currency</h1>
+      <div class="token-input-group">
+        <label>From</label>
+        <div class="input-row">
+          <div class="token-select">
+            <div class="token-icon" id="fromTokenIcon"></div>
+            <input id="fromTokenInput" placeholder="Select currency..." autocomplete="off"/>
+            <input type="hidden" id="fromToken" />
+            <div id="fromTokenDropdown" class="dropdown"></div>
+          </div>
+          <input  class="amount-input" id="fromAmount" type="number" placeholder="0.0" /> 
+          <div id="maxBtn" type="button" class="max-btn">Max</div>
+
+        </div>
+      </div>
+
+      <div class="swap-icon-wrapper">
+        <button id="swapBtn" class="swap-btn" title="Swap tokens">
+          ⇅
+        </button>
+      </div>
+
+      <div class="token-input-group">
+        <label>To</label>
+        <div class="input-row">
+          <div class="token-select">
+            <div class="token-icon" id="toTokenIcon"></div>
+            <input id="toTokenInput" placeholder="Select currency..." autocomplete="off"/>
+            <input type="hidden" id="toToken" />
+            <div id="toTokenDropdown" class="dropdown"></div>
+          </div>
+          <input id="toAmount" type="number" class="amount-input" />
+        </div>
+      </div>
+
+      <div id="rateContainer">
+        <span id="rateText"></span>
+        <span id="spinner"></span>
+      </div>
+
+      <button id="previewBtn">Preview Transaction</button>
+    </div>
+
+  </div>
+  <div id="previewPopup" class="popup hidden">
+    <div class="popup-content">
+      <button id="closePopupBtn" class="close-btn">✕</button>
+      <h3>Transaction Preview</h3>
+      <p id="popupInfo"></p>
+      <p id="popupCountdown" class="countdown"></p>
+      <button id="confirmBtn">Confirm</button>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js" defer></script>
+</body>
+</html>
+
