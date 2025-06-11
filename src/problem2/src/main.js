@@ -33,6 +33,13 @@ function normalizeSVG(svgRaw, className = 'icon', width = 20, height = 20) {
     const h = svg.getAttribute('height') || height;
     svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
   }
+  
+  const paths = svg.querySelectorAll('path');
+  paths.forEach(path => {
+    if (!path.hasAttribute('fill') || path.getAttribute('fill') === 'black' || path.getAttribute('fill') === '#000') {
+      path.setAttribute('fill', 'currentColor');
+    }
+  });
 
   return svg.outerHTML;
 }
